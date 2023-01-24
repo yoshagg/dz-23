@@ -17,18 +17,17 @@ def iter_file(file_name: str):
             yield row
 
 
-def query_builder(cmd, value):
-    gen = iter_file(FILE_NAME)
-
-    result = CMD_TO_FUNCTION[cmd](param=value, data=gen)
+def query_builder(cmd, value, data):
+    if data is None:
+        prepared_data = iter_file(FILE_NAME)
+    else:
+        prepared_data = data
+    result = CMD_TO_FUNCTION[cmd](param=value, data=prepared_data)
     return list(result)
-
 
     # while True:
     #     try:
     #         data = next(gen)
-    #         print(data)
+    #         yield data
     #     except StopIteration():
     #         break
-
-

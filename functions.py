@@ -17,4 +17,4 @@ def unique_query(data, *args, **kwargs):
 
 def limit_query(param, data):
     limit = int(param)
-    return data[:limit]
+    return list(data[:limit])
