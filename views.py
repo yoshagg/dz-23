@@ -17,7 +17,7 @@ def perform_query():
     except ValidationError as error:
         return jsonify(error.messages), 400
     result = None
-    for query in params:
+    for query in params['queries']:
         result = query_builder(
             cmd=query["cmd"],
             value=query["value"],
